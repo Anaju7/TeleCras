@@ -2,26 +2,77 @@
 
 * body {
     font-family: "Montserrat", sans-serif;
+    box-sizing: border-box;
+    width: 100vw;
+    margin: 0;
+}
+
+.navbar {
+    z-index: 9999;
+    /* position: fixed;
+    top: 0;
+    width: 100%; */
+}
+
+.title-nav {
+    padding-inline: 20px;
+}
+
+.nav-link {
+    font-size: 16px;
+    color: black;
+    font-weight: bold;
+}
+
+.wallpaper {
+    /* margin-top: 80px; */
+    width: 100%;
+    height: calc(100vh - 80px); 
+    background-image: url('https://www.turismoemrecife.com.br/assets/images/foto-aerea-recife-praia-1000x726.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+} 
+
+.wallpaper::before {
+    content: "";
+    position: absolute;
+    top: 80px;
+    left: 0;
+    right: 0;
+    bottom: -10px;
+    background: rgba(255, 255, 255, 0.6); /* Sombra branca com opacidade */
+    z-index: 1; /* Coloca a sombra sobre a imagem */
+    pointer-events: none; /* Garante que a sombra não interfira com a interação do usuário */
+}
+
+.wellcome {
+    width: 50%;
+    height: 100%;
+    text-align: left;
+    margin-left: 100px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.wellcome h2 {
+    font-size: 32px;
+    z-index: 999;
 }
 
 
-header {
-    background-color: #007bff;
-    color: white;
-    padding: 40px 0;
+.wellcome p {
+    z-index: 999;
 }
-  
-section {
-    margin-bottom: 40px;
+
+.container-services {
+    width: 100%;
+    margin-top: 24px;
+    display: flex;
+    justify-content: center;
+    gap: 24px;
 }
-  
-.btn-primary {
-    background-color: #28a745;
-    border-color: #28a745;
+
+.card-img-top {
+    max-height: 150px;
 }
-  
-.btn-primary:hover {
-    background-color: #218838;
-    border-color: #1e7e34;
-}
-  

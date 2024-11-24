@@ -1,35 +1,61 @@
 
-<!-- src/app/app.component.html -->
-<div class="container">
+<div class="full-screen-container">
     <!-- Header -->
-    <header class="text-center my-5">
-      <h1>Bem-vindo à nossa Landing Page</h1>
-      <p class="lead">Uma página de demonstração criada com Angular e Bootstrap</p>
-    </header>
+  <header class="text-center">
+    <nav class="navbar navbar-light bg-light">
+      <a class="navbar-brand" href="#">
+        <h1 class="title-nav">TeleCras</h1>
+      </a>
+      <ul class="nav justify-content-end">
+        <li class="nav-item">
+          <a class="nav-link active" href="#">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#services">Serviços</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#footer">Contatos</a>
+        </li>
+      </ul>
+    </nav>
+    <div class="wallpaper">
+      <div class="wellcome">
+        <h2 class="title">Bem-vindo ao <span>TeleCRAS</span></h2>
+        <p>Facilitamos o acesso aos serviços sociais prestados pelo CRAS,
+           oferecendo apoio e informações sobre benefícios, serviços e agendamentos.
+           Estamos aqui para te ajudar!</p>
+      </div>
+    </div>
+  </header>
   
-    <!-- Section 1 -->
-    <section class="row">
-      <div class="col-md-6">
-        <h2>O que oferecemos</h2>
-        <p>Nós fornecemos soluções incríveis para o seu negócio.</p>
+  <section id="services" class="services text-center mt-5">
+    <h3>Serviços</h3>
+    <p>Principais Serviços do CRAS</p>
+    <div class="container-services">
+      <div class="card" style="width: 18rem; height: 60vh;">
+        <img class="card-img-top" src="https://www.assistencialismo.com.br/wp-content/uploads/2024/07/9-1.jpg" alt="Card image cap">
+        <div class="card-body">
+          <p class="card-text">O CRAS ajuda a avaliar e agendar o atendimento para o Cadastro Único, um requisito essencial para acessar diversos benefícios do governo. Saiba quais documentos são necessários e como realizar o seu cadastro.</p>
+        </div>
       </div>
-      <div class="col-md-6">
-        <img src="https://via.placeholder.com/400" alt="Imagem de exemplo" class="img-fluid">
+      <div class="card" style="width: 18rem; height: 60vh;">
+        <img class="card-img-top" src="https://www.canal63.com.br/arquivos_personalizados/uploads/noticias/fotos/Tarifa_Baixa_Renda_668fb84c0af04.png" alt="Card image cap">
+        <div class="card-body">
+          <p class="card-text">O CRAS oferece um programa de apoio para famílias de baixa renda, auxiliando no pagamento da conta de energia elétrica. Caso você ou sua família se enquadre, podemos orientar sobre o processo de inscrição e requisitos.</p>
+        </div>
       </div>
-    </section>
-  
-    <!-- Section 2 -->
-    <section class="bg-light py-5">
-      <div class="container text-center">
-        <h2>Pronto para começar?</h2>
-        <p>Junte-se a nós e experimente a diferença.</p>
-        <a href="#!" class="btn btn-primary">Saiba Mais</a>
+      <div class="card" style="width: 18rem; height: 60vh;">
+        <img class="card-img-top" src="https://www.gov.br/planalto/pt-br/acompanhe-o-planalto/noticias/2023/03/tem-duvidas-sobre-o-bolsa-familia-confira-perguntas-e-respostas-sobre-o-programa/02032023_bolsa_familia_logo.png" alt="Card image cap">
+        <div class="card-body">
+          <p class="card-text">O programa Bolsa Família é um dos maiores programas de transferência de renda no Brasil. O CRAS oferece orientação e apoio para famílias de baixa renda que desejam acessar o benefício.</p>
+        </div>
       </div>
-    </section>
+    </div>
+  </section>
   
     <!-- Footer -->
-    <footer class="text-center py-4">
-      <p>&copy; 2024 Sua Empresa - Todos os direitos reservados</p>
-    </footer>
-  </div>
+  <footer id="footer" class="text-center py-4">
+    <p>&copy; 2024 Sua Empresa - Todos os direitos reservados</p>
+  </footer>
+</div>
   
