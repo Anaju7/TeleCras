@@ -7,11 +7,12 @@
     margin: 0;
 }
 
+.padding-inline {
+    padding-inline: 10%;
+}
+
 .navbar {
     z-index: 9999;
-    /* position: fixed;
-    top: 0;
-    width: 100%; */
 }
 
 .title-nav {
@@ -25,7 +26,6 @@
 }
 
 .wallpaper {
-    /* margin-top: 80px; */
     width: 100%;
     height: calc(100vh - 80px); 
     background-image: url('https://www.turismoemrecife.com.br/assets/images/foto-aerea-recife-praia-1000x726.jpg');
@@ -63,6 +63,25 @@
 
 .wellcome p {
     z-index: 999;
+}
+
+.section-cras {
+    margin-top: 40px;
+    display: flex;
+    justify-content: space-around;
+}
+
+.section-cras div {
+    width: 60%;
+}
+
+.info-cras div {
+    width: 100%;
+}
+
+.section-cras img {
+    width: 30%;
+    height: 30%;
 }
 
 .container-services {
