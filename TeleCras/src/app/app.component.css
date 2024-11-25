@@ -8,7 +8,7 @@
 }
 
 .padding-inline {
-    padding-inline: 10%;
+    padding-inline: 40px;
 }
 
 .navbar {
@@ -66,7 +66,7 @@
 }
 
 .section-cras {
-    margin-top: 40px;
+    /* margin-top: 40px; */
     display: flex;
     justify-content: space-around;
 }
