@@ -91,7 +91,6 @@
     gap: 24px;
 }
 
-.card {
-    max-width: 25rem;
-    height: 30rem;
+.card-img-top {
+    max-height: 190px;
 }
