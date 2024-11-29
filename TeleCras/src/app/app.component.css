@@ -91,6 +91,20 @@
     gap: 24px;
 }
 
-.card-img-top {
-    max-height: 190px;
+.card {
+    max-width: 25rem;
+    height: 30rem;
+}
+
+/* Alterar a cor do foco */
+.accordion-button:focus {
+    box-shadow: 0 0 0 0.25rem rgba(208, 219, 231, 0.575); /* Cor personalizada para a borda */
+    outline: none; /* Remove o contorno padrão */
+}
+
+/* Exemplo para mudar a cor do texto do título do acordeão */
+.accordion-button:focus {
+    font-weight: bold;
+    background: none;
+    color: black; /* Cor personalizada do texto */
 }
