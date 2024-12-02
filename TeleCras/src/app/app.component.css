@@ -217,7 +217,6 @@ input[type="text"] {
     border: 1px solid #f5c6cb;
     border-radius: 8px;
     color: #721c24;
-    display: none; /* Escondido por padrão */
 }
   
 @media (max-width: 768px) { /* Para tablets e dispositivos menores */
