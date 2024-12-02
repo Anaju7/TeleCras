@@ -119,8 +119,7 @@
 }
 
 .margin-0 {
-    margin: 0;
-    padding: 0;
+    margin: 0 !important;
 }
 
 .Cep {
@@ -177,7 +176,7 @@ input[type="text"] {
     box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
 }
   
-.container-cep button {
+.button-cep button {
     background-color: #007BFF;
     color: #fff;
     font-size: 14px;
@@ -188,25 +187,8 @@ input[type="text"] {
     transition: background-color 0.3s ease;
 }
   
-.container-cep button:hover {
+.button-cep button:hover {
     background-color: #0056b3;
-}
-  
-/* Resultado exibido */
-.result {
-    margin-top: 20px;
-    padding: 15px;
-    background-color: #e9f7ef;
-    border: 1px solid #d4edda;
-    border-radius: 8px;
-    color: #155724;
-    display: none; /* Escondido por padrão */
-}
-  
-.result h4 {
-    margin-bottom: 10px;
-    font-size: 18px;
-    color: #155724;
 }
   
 /* Mensagem de erro */
