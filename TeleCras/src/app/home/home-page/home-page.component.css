@@ -1,23 +1,8 @@
-
-.padding-inline {
-    padding-inline: 40px;
-}
 .margin-inline {
     margin-inline: 40px;
 }
-
-.navbar {
-    z-index: 9999;
-}
-
-.title-nav {
-    padding-inline: 20px;
-}
-
-.nav-link {
-    font-size: 16px;
-    color: black;
-    font-weight: bold;
+.padding-inline {
+    padding-inline: 40px;
 }
 
 .wallpaper {
@@ -41,13 +26,12 @@
 }
 
 .wellcome {
-    width: 50%;
     height: 100%;
     text-align: left;
-    margin-left: 100px;
     display: flex;
     flex-direction: column;
     justify-content: center;
+    padding-left: 60px;
 }
 
 .wellcome h2 {
