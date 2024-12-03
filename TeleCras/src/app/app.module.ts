@@ -6,10 +6,14 @@ import { HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { LoginComponent } from './account/login/login.component';
+import { CreateAccountComponent } from './account/create-account/create-account.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    LoginComponent,
+    CreateAccountComponent
   ],
   imports: [
     BrowserModule,
