@@ -9,17 +9,24 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { LoginComponent } from './account/login/login.component';
 import { CreateAccountComponent } from './account/create-account/create-account.component';
 
+import { AgendamentoComponent } from './account/agendamento/agendamento.component';
+import { AppRoutingModule } from './app-routing.module';
+import { HomePageComponent } from './home/home-page/home-page.component';
+
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
-    CreateAccountComponent
+    CreateAccountComponent,
+    AgendamentoComponent,
+    HomePageComponent
   ],
   imports: [
     BrowserModule,
     NgbModule,
     FormsModule,
     HttpClientModule,
+    AppRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent]
