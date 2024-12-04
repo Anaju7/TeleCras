@@ -14,7 +14,34 @@ export class HomePageComponent {
   crasInfo: string | null = null;
   error: string | null = null;
 
+  
+
   constructor(private readonly http: HttpClient) {}
+
+
+  onInputCep(event: Event): void {
+    const input = (event.target as HTMLInputElement).value;
+    const formattedCep = this.applyCepMask(input);
+    this.cep = formattedCep;
+  }
+
+  applyCepMask(value: string): string {
+    const numericValue = value.replace(/\D+/g, ''); // Remove caracteres não numéricos
+    if (numericValue.length > 5) {
+      return numericValue.slice(0, 5) + '-' + numericValue.slice(5, 8); // Aplica o formato XXXXX-XXX
+    }
+    return numericValue; // Retorna o valor sem o traço, se menor que 5 dígitos
+  }
+
+  preventNonNumeric(event: KeyboardEvent): void {
+    const allowedKeys = ['Backspace', 'Tab', 'ArrowLeft', 'ArrowRight', 'Delete'];
+    if (
+      !allowedKeys.includes(event.key) && // Permite teclas de controle
+      !/^[0-9]$/.test(event.key) // Permite apenas números
+    ) {
+      event.preventDefault(); // Bloqueia qualquer outra tecla
+    }
+  }
 
   buscarCep() {
     this.error = null;
