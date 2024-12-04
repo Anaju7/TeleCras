@@ -1,1 +1,126 @@
-<p>agendamento works!</p>
+<div class="container mt-5">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+      <h2>Agendamentos</h2>
+      <button 
+        class="btn btn-primary" 
+        (click)="openModal()"
+        data-bs-toggle="modal" 
+        data-bs-target="#agendamentoModal">
+        Novo Agendamento
+      </button>
+    </div>
+  
+    <!-- Verifica se há agendamentos -->
+    <div *ngIf="agendamentos.length === 0" class="text-center">
+      <p class="text-muted">Nenhum agendamento encontrado</p>
+    </div>
+  
+    <!-- Lista de agendamentos -->
+    <table *ngIf="agendamentos.length > 0" class="table table-striped">
+      <thead class="table-dark">
+        <tr>
+          <th>Nome Completo</th>
+          <th>Data/Hora</th>
+          <th>Serviço</th>
+          <th>Número</th>
+          <th>Unidade</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let agendamento of agendamentos">
+          <td>{{ agendamento.nome }}</td>
+          <td>{{ agendamento.dataHora | date: 'dd/MM/yyyy HH:mm' }}</td>
+          <td>{{ agendamento.servico }}</td>
+          <td>{{ agendamento.numero }}</td>
+          <td>{{ agendamento.unidade }}</td>
+        </tr>
+      </tbody>
+    </table>
+  
+    <!-- Modal de Novo Agendamento -->
+    <div 
+      class="modal fade" 
+      id="agendamentoModal" 
+      tabindex="-1" 
+      aria-labelledby="modalLabel" 
+      aria-hidden="true">
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="modalLabel">Novo Agendamento</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <form (ngSubmit)="addAgendamento(agendamentoForm)" #agendamentoForm="ngForm">
+              <div class="row g-3">
+                <div class="col-md-6">
+                  <label for="nome" class="form-label">Nome Completo</label>
+                  <input 
+                    type="text" 
+                    class="form-control" 
+                    id="nome" 
+                    name="nome" 
+                    ngModel 
+                    required>
+                </div>
+                <div class="col-md-6">
+                  <label for="cpf" class="form-label">CPF</label>
+                  <input 
+                    type="text" 
+                    class="form-control" 
+                    id="cpf" 
+                    name="cpf" 
+                    ngModel 
+                    required>
+                </div>
+                <div class="col-md-6">
+                  <label for="dataHora" class="form-label">Data/Hora</label>
+                  <input 
+                    type="datetime-local" 
+                    class="form-control" 
+                    id="dataHora" 
+                    name="dataHora" 
+                    ngModel 
+                    required>
+                </div>
+                <div class="col-md-6">
+                  <label for="servico" class="form-label">Serviço</label>
+                  <input 
+                    type="text" 
+                    class="form-control" 
+                    id="servico" 
+                    name="servico" 
+                    ngModel 
+                    required>
+                </div>
+                <div class="col-md-6">
+                  <label for="numero" class="form-label">Número</label>
+                  <input 
+                    type="text" 
+                    class="form-control" 
+                    id="numero" 
+                    name="numero" 
+                    ngModel 
+                    required>
+                </div>
+                <div class="col-md-6">
+                  <label for="unidade" class="form-label">Unidade</label>
+                  <input 
+                    type="text" 
+                    class="form-control" 
+                    id="unidade" 
+                    name="unidade" 
+                    ngModel 
+                    required>
+                </div>
+              </div>
+              <div class="mt-4 text-end">
+                <button type="submit" class="btn btn-success" [disabled]="!agendamentoForm.valid">Salvar</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
