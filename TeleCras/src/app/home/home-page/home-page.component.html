@@ -43,7 +43,6 @@
 
   <section id="services" class="services text-center pt-2 padding-inline">
     <h3><b>SERVIÇOS</b></h3>
-    <p class="body-small"><b>Os principais serviços oferecidos pelo CRAS</b></p>
     <div id="carouselExample" class="carousel slide corousel-desk" data-bs-ride="carousel">
       <div class="carousel-inner">
         <div class="padding-inline mt-2">
@@ -323,42 +322,42 @@
 </section>
   
 
-  <section class="Cep mt-5  mb-5">
-    <div class="container-cep text-center">
-      <h2>Consulta da rede CRAS</h2>
-      <p>Digite o CEP abaixo para buscar as informações do CRAS mais próximo a você:</p>
+<section class="Cep mt-5  mb-5">
+  <div class="container-cep text-center">
+    <h2>Consulta da rede CRAS</h2>
+    <p>Digite o CEP abaixo para buscar as informações do CRAS mais próximo a você:</p>
 
-      <form>
-          <label for="cep">CEP:</label>
-          <input name="cep" type="text" id="cep" size="10" maxlength="9" (keydown)="preventNonNumeric($event)" (input)="onInputCep($event)"
-                placeholder="Digite o CEP (ex: 01001-000)" [(ngModel)]="cep" />
-          <button class="button-cep" type="button" (click)="buscarCep()" >Pesquisar</button>
-      </form>
+    <form>
+        <label for="cep">CEP:</label>
+        <input name="cep" type="text" id="cep" size="10" maxlength="9" (keydown)="preventNonNumeric($event)" (input)="onInputCep($event)"
+              placeholder="Digite o CEP (ex: 01001-000)" [(ngModel)]="cep" />
+            <div *ngIf="error" id="erro" class="error">
+              <p class="margin-0">CEP não encontrado ou inválido. Tente novamente.</p>
+            </div>
+        <button class="button-cep" type="button" (click)="buscarCep()" >Pesquisar</button>
+    </form>
 
-      <div *ngIf="error" id="erro" class="error">
-          <p class="margin-0">CEP não encontrado ou inválido. Tente novamente.</p>
+  </div>
+</section>
+
+<div class="modal fade" id="crasModal" tabindex="-1" aria-labelledby="crasModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="crasModalLabel">Informações do CRAS</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
       </div>
-    </div>
-  </section>
-
-  <div class="modal fade" id="crasModal" tabindex="-1" aria-labelledby="crasModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="crasModalLabel">Informações do CRAS</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
+      <div class="modal-body">
+        <div *ngIf="crasInfo">
+          <div [innerHTML]="crasInfo"></div>
         </div>
-        <div class="modal-body">
-          <div *ngIf="crasInfo">
-            <div [innerHTML]="crasInfo"></div>
-          </div>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
-        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
       </div>
     </div>
   </div>
+</div>
 
 
 

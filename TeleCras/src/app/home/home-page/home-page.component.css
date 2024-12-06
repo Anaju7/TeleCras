@@ -270,16 +270,11 @@ transform: scale(1.1);
     background-color: #003366;
   }
   
-  .error {
-    margin-top: 20px;
-    padding: 15px;
-    background-color: #f8d7da;
-    border: 1px solid #f5c6cb;
-    border-radius: 8px;
+  .error p{
+    font-size: 10px;
     color: #721c24;
-    font-size: 14px;
     text-align: center;
-    display: none; /* Esconde por padrão */
+    font-weight: bold;
   }
 
 /* modal infos */
@@ -320,8 +315,6 @@ transform: scale(1.1);
     font-size: 1rem;
     line-height: 1.6;
   }
-
-
   
   .modal-footer {
     background-color: #f1f1f1;
