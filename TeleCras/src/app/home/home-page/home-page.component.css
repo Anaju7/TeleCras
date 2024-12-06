@@ -5,6 +5,7 @@
     padding-inline: 40px;
 }
 
+/* WELLCOME TELECRAS*/
 .wallpaper {
     display: flex;
     align-items: center;
@@ -47,50 +48,55 @@
     line-height: 1.5;
     margin-bottom: 20px;
 }
-  
-.btn-contact {
-    display: inline-block;
-    background: #ffc107; /* Fundo dourado */
-    color: #002060; /* Texto azul */
-    padding: 10px 20px;
-    border-radius: 50px;
-    font-weight: bold;
-    text-decoration: none;
-    transition: all 0.3s ease;
-}
-  
-.btn-contact:hover {
-    background: #e0a800; /* Hover dourado mais escuro */
-    color: #fff;
-}
-  
-.illustration img {
-    max-width: 100%;
-    height: auto;
-    border-radius: 20px;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
-}
 
-.wellcome p {
-    z-index: 999;
-}
-
+/* section ABOUT CRAS */
 .section-cras {
     display: flex;
-    justify-content: space-around;
+    flex-wrap: wrap; /* Adiciona responsividade para telas menores */
+    justify-content: space-between;
+    align-items: center;
+    gap: 2rem;
+    padding: 2rem;
+    border-radius: 10px;
 }
 
-.section-cras div {
-    width: 60%;
+.info-cras {
+flex: 1;
+max-width: 60%;
 }
 
 .info-cras div {
-    width: 100%;
+margin-bottom: 1.5rem;
 }
 
-.section-cras img {
-    width: 30%;
-    height: 30%;
+.info-cras h3, .info-cras h4 {
+color: #001540; /* Cor consistente com outras páginas */
+margin-bottom: 0.8rem;
+}
+
+.info-cras p {
+font-size: 1rem;
+line-height: 1.6;
+color: #333;
+}
+
+.info-cras ul {
+padding-left: 1.5rem;
+margin-top: 1rem;
+}
+
+.info-cras ul li {
+font-size: 1rem;
+color: #444;
+margin-bottom: 0.5rem;
+}
+
+.image {
+flex: 1;
+max-width: 35%; /* Adaptação para imagens */
+border-radius: 10px;
+box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+object-fit: cover; /* Melhora o encaixe da imagem */
 }
 
 .container-services {
@@ -123,94 +129,227 @@
 }
 
 /* Exemplo para mudar a cor do texto do título do acordeão */
-.accordion-button:focus {
-    font-weight: bold;
-    background: none;
-    color: black; /* Cor personalizada do texto */
+/* FAQ section */
+.faq-section {
+    padding: 3rem 1rem;
+    border-radius: 10px;
+}
+  
+.faq-title {
+color: #001540; /* Consistência com o estilo das outras seções */
+font-size: 1.8rem;
+margin-bottom: 2rem;
 }
 
-.margin-0 {
-    margin: 0 !important;
+.faq-accordion .accordion-item {
+border: none;
 }
+
+.accordion-button {
+background: #001540;
+color: #fff;
+font-weight: bold;
+border-radius: 5px;
+}
+
+.accordion-button:focus {
+box-shadow: none;
+}
+
+.accordion-button.collapsed {
+background: #f8f9fa;
+color: #001540;
+}
+
+.accordion-body {
+background: #fff;
+border-radius: 5px;
+padding: 1rem;
+color: #333;
+}
+
+.faq-contact h4 {
+color: #001540;
+font-size: 1.5rem;
+}
+
+.faq-contact span {
+color: #001540;
+font-weight: bold;
+}
+
+.faq-contact p {
+color: #444;
+margin-bottom: 0.5rem;
+}
+
+
+.telegram-logo {
+width: 50px;
+height: 50px;
+transition: transform 0.3s ease;
+}
+
+.telegram-logo:hover {
+transform: scale(1.1);
+}
+
+/* CSS search cep */
 
 .Cep {
     display: flex;
     justify-content: center;
-}
-
-/* Estilização geral da seção */
-.container-cep {
-    max-width: 600px;
-    margin: 40px auto;
+  }
+  
+  .container-cep {
+    max-width: 500px;
     padding: 20px;
     background-color: #f9f9f9;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
     font-family: Arial, sans-serif;
   }
   
-  /* Título e texto */
-.container-cep h2 {
-    color: #333;
-    font-size: 24px;
+  .container-cep h2 {
+    font-size: 1.8rem;
+    color: #001540; /* Azul escuro */
     margin-bottom: 10px;
-}
+  }
   
-.container-cep p {
-    color: #555;
-    font-size: 16px;
+  .container-cep p {
+    font-size: 1rem;
+    color: #6c757d; /* Cinza claro */
     margin-bottom: 20px;
-}
+    padding-inline: 30px;
+  }
   
-/* Estilo do formulário */
-.container-cep form {
+  .container-cep form {
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 10px;
-}
+  }
   
-.container-cep label {
+  .container-cep label {
     font-size: 14px;
     color: #555;
     margin-bottom: 5px;
-}
+  }
   
-input[type="text"] {
-    width: 100%;
-    max-width: 300px;
-    padding: 8px 12px;
-    font-size: 14px;
+  .container-cep input[type="text"] {
+    width: 70%;
+    padding: 0.75rem 1rem;
+    font-size: 1rem;
     border: 1px solid #ccc;
-    border-radius: 4px;
-    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
-}
+    border-radius: 25px;
+    outline: none;
+    transition: all 0.3s;
+    background-color: #f8f9fa;
+  }
   
-.button-cep {
-    background-color: #007BFF;
-    color: #fff;
-    font-size: 14px;
-    padding: 10px 20px;
+  .container-cep input[type="text"]:focus {
+    border-color: #001540;
+    box-shadow: 0 0 0 0.2rem rgba(0, 21, 64, 0.25);
+  }
+  
+  .button-cep {
+    background: #001540;
+    color: white;
     border: none;
-    border-radius: 4px;
+    border-radius: 25px;
+    padding: 0.7rem 1rem;
     cursor: pointer;
-    transition: background-color 0.3s ease;
-}
+    font-size: 1rem;
+    width: 200px;
+    text-transform: uppercase;
+    font-weight: bold;
+    transition: background 0.3s;
+  }
   
-.button-cep :hover {
-    background-color: #0056b3;
-}
+  .button-cep:hover {
+    background-color: #003366;
+  }
   
-/* Mensagem de erro */
-.error {
+  .error {
     margin-top: 20px;
     padding: 15px;
     background-color: #f8d7da;
     border: 1px solid #f5c6cb;
     border-radius: 8px;
     color: #721c24;
-}
+    font-size: 14px;
+    text-align: center;
+    display: none; /* Esconde por padrão */
+  }
+
+/* modal infos */
+/* Modal */
+.modal-dialog {
+    max-width: 800px;
+    margin: 30px auto;
+  }
+  
+  .modal-content {
+    border-radius: 12px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    background-color: #f9f9f9; /* Cor de fundo mais suave */
+  }
+  
+  .modal-header {
+    background-color: #001540; /* Cor do cabeçalho do modal */
+    color: #fff;
+    border-radius: 12px 12px 0 0;
+    padding: 15px;
+  }
+  
+  .modal-title {
+    font-size: 1.5rem;
+    font-weight: 600;
+  }
+  
+  .btn-close {
+    background: transparent;
+    border: none;
+    color: #fff;
+    font-size: 1.5rem;
+  }
+  
+  .modal-body {
+    padding: 20px;
+    color: #333;
+    font-size: 1rem;
+    line-height: 1.6;
+  }
+
+
+  
+  .modal-footer {
+    background-color: #f1f1f1;
+    padding: 15px;
+    border-radius: 0 0 12px 12px;
+  }
+  
+  .modal-footer .btn-secondary {
+    background-color: #001540;
+    color: #fff;
+    border: none;
+    padding: 8px 20px;
+    border-radius: 8px;
+    font-size: 1rem;
+  }
+  
+  .modal-footer .btn-secondary:hover {
+    background-color: #003366;
+  }
+  
+  /* Efeito de sombra no fundo do modal */
+  .modal-backdrop {
+    background-color: rgba(0, 0, 0, 0.5);
+  }
+  
+
+
+
 
 footer {
     background-color: #f8f9fa;
@@ -245,6 +384,13 @@ footer a:hover {
     .section-cras img {
         display: none;
     }
+    .faq-title {
+        font-size: 1.5rem;
+    }
+    
+    .accordion-button {
+        font-size: 0.9rem;
+    }                                         
 }
 
 @media (max-width: 480px) { /* Para dispositivos móveis menores */
@@ -256,4 +402,29 @@ footer a:hover {
         display: block;
     }
 }
- 
+
+@media (max-width: 992px) {
+    .section-cras {
+      flex-direction: column;
+      text-align: center;
+    }
+  
+    .info-cras {
+      max-width: 100%;
+    }
+  
+    .image {
+      max-width: 80%;
+      margin: 1rem auto;
+    }
+  }
+  
+  @media (max-width: 576px) {
+    .info-cras h3, .info-cras h4 {
+      font-size: 1.25rem;
+    }
+  
+    .info-cras p, .info-cras ul li {
+      font-size: 0.9rem;
+    }
+  }
