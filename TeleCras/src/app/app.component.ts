@@ -19,6 +19,11 @@ export class AppComponent  {
     });
   }
 
+  isNotHomePage() {
+    const currentPath = this.router.url.split('#')[0]; // Ignora fragmentos (o que vem após '#')
+    return currentPath !== '/'; // Verifica apenas o caminho base
+  }
+
   // Método para verificar se o path é a página inicial
   isHomePage(): boolean {
     const path = this.router.url.split('#')[0]; // Pega apenas a parte do path, sem o fragmento

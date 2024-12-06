@@ -7,31 +7,100 @@
     margin: 0;
 }
 
-.title-nav {
-    padding-inline: 20px;
-}
-
-.nav-link {
-    font-size: 16px;
-    color: black;
+.navbar .navbar-brand h1 {
+    color: #001540;
     font-weight: bold;
-}
-footer {
-    background-color: #f8f9fa;
-    padding: 20px;
-    text-align: center;
-    font-size: 14px;
-    color: #6c757d;
+    font-size: 1.5rem;
 }
 
-footer a {
-    margin: 0 10px;
-    color: inherit;
-    text-decoration: none;
-    font-size: 20px;
-    transition: color 0.3s;
+.navbar {
+    background-color: #ffffff; 
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 10px 20px;
 }
 
-footer a:hover {
-    color: #0056b3;
+
+
+
+/* Links da navegação */
+.navbar .nav-link {
+    color: #333333; /* Cor padrão dos links */
+    font-weight: 500;
+    font-size: 0.9rem; /* Texto menor */
+    padding: 5px 8px; /* Redução no espaçamento */
+    transition: color 0.3s ease;
+  }
+  
+  .navbar .nav-link:hover {
+    color: #000000; /* Tom mais escuro no hover */
+    text-decoration: underline; /* Sublinhado para destacar */
+  }
+  
+  /* Botão "Acessar" */
+/* Botão "Acessar" */
+.navbar .btn-primary {
+  background-color: #002060; /* Azul escuro */
+  border: none;
+  border-radius: 15px; /* Bordas arredondadas */
+  padding: 6px 15px;
+  font-weight: bold;
+  font-size: 0.85rem;
+  color: white;
+  transition: all 0.3s ease;
+  margin-left: 10px;
 }
+
+.navbar .btn-primary:hover {
+  background-color: #001540; /* Azul ainda mais escuro no hover */
+  transform: scale(1.05); /* Leve efeito de zoom */
+}
+
+
+/* Botão "Sair" */
+.navbar .btn-outline-secondary {
+  border: 1px solid #354a67; /* Borda cinza-azulada */
+  background-color: transparent;
+  color: #354a67; /* Texto cinza-azulado */
+  border-radius: 15px;
+  padding: 6px 15px;
+  font-weight: bold;
+  font-size: 0.85rem;
+  transition: all 0.3s ease;
+  margin-left: 10px;
+}
+
+.navbar .btn-outline-secondary:hover {
+  background-color: #4a637f; /* Fundo cinza-azulado mais claro no hover */
+  color: white; /* Texto branco no hover */
+  transform: scale(1.05); /* Leve efeito de zoom */
+}
+@media (max-width: 992px) {
+    .navbar .btn-primary,
+    .navbar .btn-outline-secondary {
+      border: none; /* Remove as bordas dos botões */
+      background-color: transparent; /* Fundo transparente */
+      color: #333333 !important; /* Cor do texto igual aos links */
+      padding: 5px 8px; /* Mesmo espaçamento que os links */
+      font-size: 0.9rem; /* Tamanho de texto igual aos links */
+      margin: 0; /* Remove o espaçamento extra */
+      border-radius: 0; /* Remove bordas arredondadas */
+      text-align: center; /* Alinha texto ao lado esquerdo */
+      font-weight: 500;
+    }
+  
+    .navbar .btn-primary:hover,
+    .navbar .btn-outline-secondary:hover {
+      color: #007bff; /* Azul no hover */
+      background-color: transparent; /* Sem fundo no hover */
+      transform: none; /* Remove o efeito de aumento */
+    }
+  
+    /* Ajuste do alinhamento no menu */
+    .navbar .navbar-nav {
+      text-align: center;
+    }
+  
+    .navbar .nav-item {
+      margin-bottom: 5px; /* Espaçamento entre itens */
+    }
+  }

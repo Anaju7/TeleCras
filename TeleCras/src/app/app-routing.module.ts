@@ -1,10 +1,14 @@
 import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
+import { ExtraOptions, RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from './account/login/login.component';
 import { AgendamentoComponent } from './account/agendamento/agendamento.component';
 import { AuthGuard } from './account/shared/auth.guard';
 import { HomePageComponent } from './home/home-page/home-page.component';
 import { CreateAccountComponent } from './account/create-account/create-account.component';
+
+const routerOptions: ExtraOptions = {
+  anchorScrolling: 'enabled', // Ativa o scroll para fragmentos
+};
 
 const routes: Routes = [
   {
@@ -28,7 +32,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes, routerOptions)],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

@@ -9,15 +9,10 @@
         Novo Agendamento
       </button>
     </div>
-  
-    <!-- Verifica se há agendamentos -->
-    <div *ngIf="agendamentos.length === 0" class="text-center">
-      <p class="text-muted">Nenhum agendamento encontrado</p>
-    </div>
-  
     <!-- Lista de agendamentos -->
+     <!--  -->
     <table *ngIf="agendamentos.length > 0" class="table table-striped">
-      <thead class="table-dark">
+      <thead class="table-primary">
         <tr>
           <th>Nome Completo</th>
           <th>Data/Hora</th>
@@ -36,6 +31,11 @@
         </tr>
       </tbody>
     </table>
+      <!-- Verifica se há agendamentos -->
+     <!--  -->
+    <div  *ngIf="agendamentos.length === 0" class="text-center mt-4">
+      <p class="text-muted">Nenhum agendamento encontrado</p>
+    </div>
   
     <!-- Modal de Novo Agendamento -->
     <div 
@@ -70,8 +70,11 @@
                     class="form-control" 
                     id="cpf" 
                     name="cpf" 
-                    ngModel 
-                    required>
+                    ngModel
+                    (keyup)="formatCpf($event)" 
+                    required
+                    placeholder="000.000.000-00"
+                    maxlength="14">
                 </div>
                 <div class="col-md-6">
                   <label for="dataHora" class="form-label">Data/Hora</label>
@@ -85,13 +88,21 @@
                 </div>
                 <div class="col-md-6">
                   <label for="servico" class="form-label">Serviço</label>
-                  <input 
-                    type="text" 
-                    class="form-control" 
+                  <select 
+                    class="form-select" 
                     id="servico" 
                     name="servico" 
                     ngModel 
                     required>
+                    <option value="" disabled selected>Selecione um serviço</option>
+                    <option value="Benefício AUXÍLIO FUNERAL">Benefício AUXÍLIO FUNERAL</option>
+                    <option value="PROGRAMA COZINHA SOLIDÁRIA E CESTA BÁSICAS DE ALIMENTOS">PROGRAMA COZINHA SOLIDÁRIA E CESTA BÁSICAS DE ALIMENTOS</option>
+                    <option value="BOLSA FAMÍLIA">BOLSA FAMÍLIA</option>
+                    <option value="BENEFÍCIO DE PRESTAÇÃO CONTINUADA (BPC)">BENEFÍCIO DE PRESTAÇÃO CONTINUADA (BPC)</option>
+                    <option value="TARIFA SOCIAL DE ENERGIA ELETRICA">TARIFA SOCIAL DE ENERGIA ELETRICA</option>
+                    <option value="Cadastro unico">Cadastro único</option>
+                    <option value="VEM Livre Acesso">VEM Livre Acesso</option>
+                  </select>
                 </div>
                 <div class="col-md-6">
                   <label for="numero" class="form-label">Número</label>
@@ -101,17 +112,37 @@
                     id="numero" 
                     name="numero" 
                     ngModel 
+                    (keyup)="formatPhone($event)" 
+                    maxlength="15"
                     required>
                 </div>
                 <div class="col-md-6">
                   <label for="unidade" class="form-label">Unidade</label>
-                  <input 
-                    type="text" 
-                    class="form-control" 
+                  <select 
+                    class="form-select" 
                     id="unidade" 
                     name="unidade" 
                     ngModel 
                     required>
+                    <option value="" disabled selected>Selecione uma unidade</option>
+                    <option value="CRAS Santo Amaro">CRAS Santo Amaro</option>
+                    <option value="CRAS Joana Bezerra/Coque">CRAS Joana Bezerra/Coque</option>
+                    <option value="CRAS Campina do Barreto">CRAS Campina do Barreto</option>
+                    <option value="CRAS Alto Santa Terezinha">CRAS Alto Santa Terezinha</option>
+                    <option value="CRAS Alto do Mandu">CRAS Alto do Mandu</option>
+                    <option value="CRAS Dois Irmãos">CRAS Dois Irmãos</option>
+                    <option value="CRAS Cordeiro">CRAS Cordeiro</option>
+                    <option value="CRAS Torrões">CRAS Torrões</option>
+                    <option value="CRAS Rosilda Mendes Souza">CRAS Rosilda Mendes Souza</option>
+                    <option value="CRAS Totó">CRAS Totó</option>
+                    <option value="CRAS Bongi">CRAS Bongi</option>
+                    <option value="CRAS Ibura de Baixo">CRAS Ibura de Baixo</option>
+                    <option value="CRAS Pina">CRAS Pina</option>
+                    <option value="CRAS Ibura de Cima / Cohab">CRAS Ibura de Cima / Cohab</option>
+                  </select>
+                  <div class="mt-2 link-small">
+                    <a [routerLink]="'/'" data-bs-dismiss="modal" fragment="footer" class="fw-bold">Encontre o cras mais proximo de você</a>
+                  </div>
                 </div>
               </div>
               <div class="mt-4 text-end">
