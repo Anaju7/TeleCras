@@ -13,10 +13,19 @@ export class AppComponent  {
   constructor(private router: Router, private activatedRoute: ActivatedRoute) {}
 
   ngOnInit(): void {
-    // Acessa a URL completa da rota
     this.router.events.subscribe(() => {
       this.currentPath = this.router.url;  // Atualiza o currentPath sempre que a URL mudar
     });
+  }
+
+  ShowAcessButton(): boolean {
+    const currentPath = this.router.url.split('#')[0]; // Ignora fragmentos
+    return currentPath !== '/agendamentos' && currentPath !== '/acessar'; // Exibe o botão somente se a rota for diferente dessas
+  }
+
+  isAgendamentosPage(): boolean {
+    const currentPath = this.router.url.split('#')[0]; // Ignora fragmentos
+    return currentPath === '/agendamentos'; // Verifica se o caminho é '/agendamentos'
   }
 
   isNotHomePage() {

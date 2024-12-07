@@ -1,4 +1,6 @@
-import { Component, HostListener, ElementRef } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Component } from '@angular/core';
+import { Agendamento } from 'src/app/models/agendamento.model';
 
 @Component({
   selector: 'app-agendamento',
@@ -6,89 +8,81 @@ import { Component, HostListener, ElementRef } from '@angular/core';
   styleUrls: ['./agendamento.component.css']
 })
 export class AgendamentoComponent {
-  agendamentos: Array<any> = []; // Lista de agendamentos
+  agendamentos: Agendamento[] = [];
+  nomeUsuario: string = 'Ana Ju'; 
 
-  constructor(private readonly el: ElementRef) {}
+  constructor(private http: HttpClient) {}
 
-  @HostListener('input', ['$event'])
-  onInputChange(event: Event): void {
-    const input = this.el.nativeElement as HTMLInputElement;
-    let value = input.value.replace(/\D/g, ''); // Remove tudo que não for número
-
-    if (value.length > 11) value = value.substring(0, 11); // Limita ao tamanho de um CPF
-
-    // Aplica a máscara de CPF: 123.456.789-01
-    if (value.length > 9) {
-      value = value.replace(/^(\d{3})(\d{3})(\d{3})(\d{1,2})/, '$1.$2.$3-$4');
-    } else if (value.length > 6) {
-      value = value.replace(/^(\d{3})(\d{3})(\d{1,3})/, '$1.$2.$3');
-    } else if (value.length > 3) {
-      value = value.replace(/^(\d{3})(\d{1,3})/, '$1.$2');
-    }
-
-    input.value = value;
+  ngOnInit(): void {
+    this.carregarAgendamentos();
   }
 
-  // Método para abrir a modal (opcional)
-  openModal(): void {
-    console.log('Modal aberta');
+  validateName(event: Event): void {
+    const input = event.target as HTMLInputElement;
+    input.value = input.value.replace(/[0-9]/g, ''); // Remove números
   }
 
-  formatPhone(event: KeyboardEvent): void {
+  formatPhone(event: Event): void {
     const input = event.target as HTMLInputElement;
     let value = input.value.replace(/\D/g, '');
-  
     if (value.length > 11) value = value.substring(0, 11);
-  
+
     if (value.length > 10) {
-      value = value.replace(/^(\d{2})(\d{5})(\d{1,4})/, '($1) $2-$3');
+      value = value.replace(/^(\d{2})(\d{5})(\d{4})/, '($1) $2-$3');
     } else if (value.length > 6) {
-      value = value.replace(/^(\d{2})(\d{4})(\d{1,4})/, '($1) $2-$3');
+      value = value.replace(/^(\d{2})(\d{4})(\d{0,4})/, '($1) $2-$3');
     } else if (value.length > 2) {
-      value = value.replace(/^(\d{2})(\d{1,4})/, '($1) $2');
-    } else {
-      value = value.replace(/^(\d*)/, '($1');
+      value = value.replace(/^(\d{2})(\d{0,4})/, '($1) $2');
     }
-  
+
     input.value = value;
   }
 
-  formatCpf(event: KeyboardEvent): void {
+  formatCpf(event: Event): void {
     const input = event.target as HTMLInputElement;
-    let value = input.value.replace(/\D/g, ''); // Remove tudo que não for número
-  
+    let value = input.value.replace(/\D/g, '');
     if (value.length > 11) value = value.substring(0, 11);
-  
+
     if (value.length > 9) {
-      value = value.replace(/^(\d{3})(\d{3})(\d{3})(\d{1,2})/, '$1.$2.$3-$4');
+      value = value.replace(/^(\d{3})(\d{3})(\d{3})(\d{2})/, '$1.$2.$3-$4');
     } else if (value.length > 6) {
-      value = value.replace(/^(\d{3})(\d{3})(\d{1,3})/, '$1.$2.$3');
+      value = value.replace(/^(\d{3})(\d{3})(\d{0,3})/, '$1.$2.$3');
     } else if (value.length > 3) {
-      value = value.replace(/^(\d{3})(\d{1,3})/, '$1.$2');
+      value = value.replace(/^(\d{3})(\d{0,3})/, '$1.$2');
     }
-  
+
     input.value = value;
   }
 
-  // Adiciona um novo agendamento
+  carregarAgendamentos(): void {
+    this.http.get<any[]>('URL_DA_API').subscribe({
+      next: (response) => {
+        this.agendamentos = response;
+      },
+      error: (error) => {
+        console.error('Erro ao carregar agendamentos:', error);
+      }
+    });
+  }
+
   addAgendamento(form: any): void {
     if (form.valid) {
-      const newAgendamento = {
+      const novoAgendamento: Agendamento  = {
+        id: this.agendamentos.length + 1,
         nome: form.value.nome,
         cpf: form.value.cpf,
-        dataHora: form.value.dataHora,
+        data: form.value.dataHora.split('T')[0],
+        hora: form.value.dataHora.split('T')[1],
         servico: form.value.servico,
         numero: form.value.numero,
-        unidade: form.value.unidade
+        unidade: form.value.unidade,
+        local: form.value.unidade
       };
-
-      this.agendamentos.push(newAgendamento); // Adiciona à lista
-      form.reset(); // Reseta o formulário
-      const modalCloseButton: HTMLElement | null = document.querySelector(
-        '#agendamentoModal .btn-close'
-      );
-      modalCloseButton?.click(); // Fecha a modal
+      this.agendamentos.push(novoAgendamento); // Atualiza a lista local
+      form.resetForm(); // Reseta o formulário após o envio
     }
+
   }
+
 
 }

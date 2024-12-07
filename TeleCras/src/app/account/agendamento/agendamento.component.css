@@ -1,4 +1,110 @@
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+.container h2 {
+    color: #001540;
+}
+  
+  .accordion-item {
+    border-radius: 5px;
+  }
+  
+  .accordion-button {
+    background-color: #f8f9fa;
+    color: #001540;
+    font-weight: bold;
+  }
+  
+  .accordion-button:hover {
+    background-color: #001540;
+    color: #ffffff;
+  }
+  
+
+.modal-content {
+    border-radius: 12px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    background-color: #f9f9f9; /* Cor de fundo mais suave */
+}
+
+.btn-close {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: transparent;
+    color: #fff;
+    font-size: 1rem;
+}
+
+.btn-close img {
+    width: 24px;
+}
+
+.modal-header {
+    background-color: #001540; /* Cor do cabeçalho do modal */
+    color: #fff;
+    border-radius: 12px 12px 0 0;
+    padding: 15px;
+}
+
+.modal-footer .btn-secondary {
+    background-color: #001540;
+    color: #fff;
+    border: none;
+    padding: 8px 20px;
+    border-radius: 8px;
+    font-size: 1rem;
+}
+
+.modal-footer .btn-secondary:hover {
+    background-color: #003366;
+}
+
+label {
+    font-size: 0.9rem;
+    color: #333;
+    margin-bottom: 0.5rem;
+    display: block;
+}
+input {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 25px;
+    outline: none;
+    transition: all 0.3s;
+    background-color: #f8f9fa;
+}
+  
+input:focus {
+    border-color: #001540;
+    box-shadow: 0 0 5px rgba(0, 21, 64, 0.5);
+}
+
+select {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 25px;
+    outline: none;
+    transition: all 0.3s;
+    background-color: #f8f9fa;
+}
+
+select:focus {
+    border-color: #001540;
+    box-shadow: 0 0 5px rgba(0, 21, 64, 0.5);
+}
+
 .link-small {
     padding-left: 10px;
     font-size: 10px;
+}
+
+.link-small a {
+    color: #001540;
 }
