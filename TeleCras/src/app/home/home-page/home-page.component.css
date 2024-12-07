@@ -131,7 +131,7 @@ object-fit: cover; /* Melhora o encaixe da imagem */
 /* Exemplo para mudar a cor do texto do título do acordeão */
 /* FAQ section */
 .faq-section {
-    padding: 3rem 1rem;
+    padding: 3rem 10rem;
     border-radius: 10px;
 }
   
@@ -272,7 +272,7 @@ transform: scale(1.1);
   
   .error p{
     font-size: 10px;
-    color: #721c24;
+    color: #d8000c;
     text-align: center;
     font-weight: bold;
   }
@@ -377,13 +377,17 @@ footer a:hover {
     .section-cras img {
         display: none;
     }
+
+    .faq-section {
+      padding: 3rem 2rem;
+    }
     .faq-title {
         font-size: 1.5rem;
     }
     
     .accordion-button {
         font-size: 0.9rem;
-    }                                         
+    }                                       
 }
 
 @media (max-width: 480px) { /* Para dispositivos móveis menores */

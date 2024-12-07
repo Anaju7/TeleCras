@@ -27,7 +27,7 @@
   }
   
   .form-group {
-    margin-bottom: 1.5rem;
+    margin-bottom: 0.9rem;
     text-align: left;
     width: 100%;
     position: relative;
@@ -75,14 +75,10 @@
   }
   
   .error-message {
-    margin-top: 1rem;
-    padding: 0.5rem;
-    background-color: #ffdddd;
     color: #d8000c;
-    border: 1px solid #d8000c;
-    border-radius: 5px;
-    font-size: 0.9rem;
-    display: none;
+    font-size: 9px;
+    text-align: center;
+    font-weight: bold;
   }
   
   .error-message.visible {

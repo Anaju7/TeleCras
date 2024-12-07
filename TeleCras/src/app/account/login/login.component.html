@@ -11,8 +11,8 @@
           <label for="password">Senha</label>
           <input type="password" id="password" required  class="form-control"  [(ngModel)]="senha" name="senha" />
         </div>
+        <p *ngIf="errorMessage" id="error" class="error-message hidden">{{errorMessage}}</p>
         <button type="submit" class="btn">Acessar</button>
-        <div *ngIf="errorMessage || disabled" id="error" class="error-message hidden">{{errorMessage}}</div>
         <p class="signup-link">Ainda não tem conta? <a href="/criar-conta">Cadastre-se</a></p>
       </form>
     </div>

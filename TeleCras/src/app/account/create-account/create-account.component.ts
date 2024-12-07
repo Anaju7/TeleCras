@@ -7,62 +7,51 @@ import { Component, HostListener, ElementRef } from '@angular/core';
 })
 export class CreateAccountComponent {
 
-  constructor(private readonly el: ElementRef) {}
+  constructor() {}
 
-  @HostListener('input', ['$event'])
-  onInputChange(event: Event): void {
-    const input = this.el.nativeElement as HTMLInputElement;
-    let value = input.value.replace(/\D/g, ''); // Remove tudo que não for número
-
-    if (value.length > 11) value = value.substring(0, 11); // Limita ao tamanho de um CPF
-
-    // Aplica a máscara de CPF: 123.456.789-01
-    if (value.length > 9) {
-      value = value.replace(/^(\d{3})(\d{3})(\d{3})(\d{1,2})/, '$1.$2.$3-$4');
-    } else if (value.length > 6) {
-      value = value.replace(/^(\d{3})(\d{3})(\d{1,3})/, '$1.$2.$3');
-    } else if (value.length > 3) {
-      value = value.replace(/^(\d{3})(\d{1,3})/, '$1.$2');
-    }
-
-    input.value = value;
+  validateName(event: Event): void {
+    const input = event.target as HTMLInputElement;
+    input.value = input.value.replace(/[0-9]/g, ''); // Remove números
   }
 
-
-  formatPhone(event: KeyboardEvent): void {
+  formatPhone(event: Event): void {
     const input = event.target as HTMLInputElement;
     let value = input.value.replace(/\D/g, '');
-  
     if (value.length > 11) value = value.substring(0, 11);
-  
+
     if (value.length > 10) {
-      value = value.replace(/^(\d{2})(\d{5})(\d{1,4})/, '($1) $2-$3');
+      value = value.replace(/^(\d{2})(\d{5})(\d{4})/, '($1) $2-$3');
     } else if (value.length > 6) {
-      value = value.replace(/^(\d{2})(\d{4})(\d{1,4})/, '($1) $2-$3');
+      value = value.replace(/^(\d{2})(\d{4})(\d{0,4})/, '($1) $2-$3');
     } else if (value.length > 2) {
-      value = value.replace(/^(\d{2})(\d{1,4})/, '($1) $2');
-    } else {
-      value = value.replace(/^(\d*)/, '($1');
+      value = value.replace(/^(\d{2})(\d{0,4})/, '($1) $2');
     }
-  
+
     input.value = value;
   }
 
-  formatCpf(event: KeyboardEvent): void {
+  formatCpf(event: Event): void {
     const input = event.target as HTMLInputElement;
-    let value = input.value.replace(/\D/g, ''); // Remove tudo que não for número
-  
+    let value = input.value.replace(/\D/g, '');
     if (value.length > 11) value = value.substring(0, 11);
-  
+
     if (value.length > 9) {
-      value = value.replace(/^(\d{3})(\d{3})(\d{3})(\d{1,2})/, '$1.$2.$3-$4');
+      value = value.replace(/^(\d{3})(\d{3})(\d{3})(\d{2})/, '$1.$2.$3-$4');
     } else if (value.length > 6) {
-      value = value.replace(/^(\d{3})(\d{3})(\d{1,3})/, '$1.$2.$3');
+      value = value.replace(/^(\d{3})(\d{3})(\d{0,3})/, '$1.$2.$3');
     } else if (value.length > 3) {
-      value = value.replace(/^(\d{3})(\d{1,3})/, '$1.$2');
+      value = value.replace(/^(\d{3})(\d{0,3})/, '$1.$2');
     }
-  
+
     input.value = value;
+  }
+
+  onSubmit(form: any): void {
+    if (form.valid) {
+      console.log('Form data:', form.value);
+    } else {
+      console.log('Form is invalid.');
+    }
   }
 
 }

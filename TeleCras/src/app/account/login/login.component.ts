@@ -24,6 +24,7 @@ export class LoginComponent {
        
       };
       this.router.navigate(['/agendamentos'])
+      console.log("sucesso no login")
 
 
       // this.http.post('/api/login', loginData).subscribe({
@@ -43,6 +44,7 @@ export class LoginComponent {
     } else {
       this.errorMessage = "Por favor, preencha todos os campos para continuar."
        this.disabled = true
+       console.log("erro no login")
     }
   }
 }
