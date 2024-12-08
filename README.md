@@ -10,7 +10,6 @@ O site TeleCras foi projetado para atender às principais demandas dos usuários
 
 🔍 Informações e Respostas Objetivas
 Informações detalhadas sobre os serviços disponíveis no CRAS, como:
-
 Cadastro Único.
 Bolsa Família.
 Auxílio Funeral.
@@ -20,12 +19,15 @@ Seção de Perguntas Frequentes (FAQ): Respostas rápidas e claras às dúvidas 
 
 📍 Busca de Unidades do CRAS
 Buscador inteligente: Localize a unidade mais próxima a partir do CEP fornecido pelo usuário.
+
 👤 Área do Usuário
 Cadastro e Login: Criação de contas para acesso personalizado.
-Perfil do Usuário: Informações pessoais e histórico de interações com o CRAS.
+Perfil do Usuário: Informações pessoais.
+
 📅 Agendamentos Online
 Solicitação de Agendamentos: Agende consultas e atendimentos de forma prática.
 Consulta de Agendamentos: Encontre seus agendamentos realizados utilizando o CPF.
+
 🤖 Acesso Rápido ao Assistente Virtual Gabi
 Botão integrado para acesso direto ao chatbot GabiTelecras, disponível no Telegram.
 
