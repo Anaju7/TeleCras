@@ -8,7 +8,7 @@ declare let bootstrap: any;
   styleUrls: ['./create-account.component.css']
 })
 export class CreateAccountComponent {
-  errorMessage: string = 'aaaaaaaaa'; // Para exibir mensagens de erro
+  errorMessage: string = ''; // Para exibir mensagens de erro
   errorForm: boolean = false;
 
   constructor(private readonly http: HttpClient) {}
@@ -51,7 +51,6 @@ export class CreateAccountComponent {
   }
 
   onSubmit(form: any): void {
-    console.log(form)
     if (form.valid) {
       const usuario: User = {
         nome: form.value.name,
@@ -61,10 +60,8 @@ export class CreateAccountComponent {
         contato: form.value.phone.replace(/\D/g, '')
       };
 
-    console.log('Form data:', usuario);
     this.http.post('/api/cadastro', usuario).subscribe({
       next: (response) => {
-        console.log('Usuario cadastrado com sucesso:', response);
         this.errorMessage = '';
         this.errorForm = false;
         const modalElement = document.getElementById('successModal');
@@ -76,7 +73,8 @@ export class CreateAccountComponent {
       error: (error: HttpErrorResponse) => {
         if (error.status === 404 ) {
           this.errorForm = true;
-          this.errorMessage = 'Usuário não cadastrado.';
+          console.log(error.message)
+          this.errorMessage = error.message;
         }
         else {
           this.errorForm = true;

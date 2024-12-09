@@ -30,7 +30,7 @@
     
             <!-- Botão "Acessar" -->
             <li class="nav-item" *ngIf="ShowAcessButton()">
-              <a class="btn btn-primary nav-link text-white px-3" routerLink="/acessar">Acessar</a>
+              <a class="btn btn-primary nav-link text-white px-3" (click)="logged()">Acessar</a>
             </li>
             <li class="nav-item" *ngIf="isAgendamentosPage()">
               <a class="btn btn-primary nav-link text-white px-3"  

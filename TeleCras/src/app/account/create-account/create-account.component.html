@@ -62,7 +62,7 @@
         </div>
         <p *ngIf="errorForm" id="error" class="error-message hidden">{{errorMessage}}</p>
         <!-- Botão de cadastro -->
-        <button type="submit"  class="btn">Cadastrar</button>
+        <button type="submit"  class="btn" [disabled]="!form.valid || errorForm">Cadastrar</button>
       </form>
 
       <!-- Link para login -->

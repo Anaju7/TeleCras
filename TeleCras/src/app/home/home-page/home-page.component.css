@@ -417,7 +417,8 @@ color: #333;
     }
     .modal-dialog {
       margin: 30px 2rem;
-    }                                   
+    }
+                            
 }
 
 @media (max-width: 480px) { /* Para dispositivos móveis menores */
@@ -441,9 +442,11 @@ color: #333;
     }
   
     .image {
-      max-width: 80%;
-      margin: 1rem auto;
+      display: none;
     }
+    .img-family {
+      display: none;
+    }  
 }
   
 @media (max-width: 576px) {

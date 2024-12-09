@@ -10,7 +10,7 @@ export class AppComponent  {
   title = 'TeleCras';
   currentPath: string = '';
 
-  constructor(private readonly router: Router,) {}
+  constructor(private readonly router: Router) {}
 
   ngOnInit(): void {
     this.router.events.subscribe(() => {
@@ -34,10 +34,6 @@ export class AppComponent  {
     return currentPath !== '/'; // Verifica apenas o caminho base
   }
 
-  clear() {
-    localStorage.clear();
-  }
-
   // Método para verificar se o path é a página inicial
   isHomePage(): boolean {
     const path = this.router.url.split('#')[0]; // Pega apenas a parte do path, sem o fragmento
@@ -53,5 +49,18 @@ export class AppComponent  {
       // Remove a classe 'show' para fechar o menu
       navbar.classList.remove('show');
     }
+  }
+
+  logged(): void {
+    const userData = localStorage.getItem('usuario');
+    if (userData) {
+      this.router.navigate(['/agendamentos']);
+    } else {
+      this.router.navigate(['/acessar']);
+    }
+  }
+
+  clear() {
+    localStorage.clear();
   }
 }
