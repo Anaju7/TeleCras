@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -10,7 +10,7 @@ export class AppComponent  {
   title = 'TeleCras';
   currentPath: string = '';
 
-  constructor(private router: Router, private activatedRoute: ActivatedRoute) {}
+  constructor(private readonly router: Router,) {}
 
   ngOnInit(): void {
     this.router.events.subscribe(() => {
@@ -33,6 +33,10 @@ export class AppComponent  {
     return currentPath !== '/'; // Verifica apenas o caminho base
   }
 
+  clear() {
+    localStorage.clear();
+  }
+
   // Método para verificar se o path é a página inicial
   isHomePage(): boolean {
     const path = this.router.url.split('#')[0]; // Pega apenas a parte do path, sem o fragmento
@@ -41,4 +45,5 @@ export class AppComponent  {
     // Verifica se é a página inicial ou se está navegando com fragmentos específicos
     return path === '/' && (!fragment || ['services','sobre', 'FAQ', 'footer'].includes(fragment));
   }
+
 }

@@ -99,6 +99,13 @@
     text-decoration: underline;
   }
 
+  .error-message {
+    color: #d8000c;
+    font-size: 9px;
+    text-align: center;
+    font-weight: bold;
+  }
+
 @media (max-width: 768px) {
   .flex {
       display: flex;
@@ -107,6 +114,9 @@
     }
   .btn {
     width: 100%;
+  }
+  .login-container {
+    max-width: 90%;
   }
 }
   

@@ -12,6 +12,7 @@ import { CreateAccountComponent } from './account/create-account/create-account.
 import { AgendamentoComponent } from './account/agendamento/agendamento.component';
 import { AppRoutingModule } from './app-routing.module';
 import { HomePageComponent } from './home/home-page/home-page.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -26,6 +27,7 @@ import { HomePageComponent } from './home/home-page/home-page.component';
     NgbModule,
     FormsModule,
     HttpClientModule,
+    BrowserAnimationsModule,
     AppRoutingModule
   ],
   providers: [],

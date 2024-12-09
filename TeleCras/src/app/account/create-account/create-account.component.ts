@@ -1,13 +1,17 @@
-import { Component, HostListener, ElementRef } from '@angular/core';
-
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { Component } from '@angular/core';
+import { User } from 'src/app/models/cadastro.model';
+declare let bootstrap: any;
 @Component({
   selector: 'app-create-account',
   templateUrl: './create-account.component.html',
   styleUrls: ['./create-account.component.css']
 })
 export class CreateAccountComponent {
+  errorMessage: string = 'aaaaaaaaa'; // Para exibir mensagens de erro
+  errorForm: boolean = false;
 
-  constructor() {}
+  constructor(private readonly http: HttpClient) {}
 
   validateName(event: Event): void {
     const input = event.target as HTMLInputElement;
@@ -47,9 +51,41 @@ export class CreateAccountComponent {
   }
 
   onSubmit(form: any): void {
+    console.log(form)
     if (form.valid) {
-      console.log('Form data:', form.value);
+      const usuario: User = {
+        nome: form.value.name,
+        email: form.value.email,
+        senha: form.value.senha,
+        cpf: form.value.cpf.replace(/\D/g, ''),
+        contato: form.value.phone.replace(/\D/g, '')
+      };
+
+    console.log('Form data:', usuario);
+    this.http.post('/api/cadastro', usuario).subscribe({
+      next: (response) => {
+        console.log('Usuario cadastrado com sucesso:', response);
+        this.errorMessage = '';
+        this.errorForm = false;
+        const modalElement = document.getElementById('successModal');
+        if (modalElement) {
+          const bootstrapModal = new bootstrap.Modal(modalElement);
+          bootstrapModal.show();
+        }
+      },
+      error: (error: HttpErrorResponse) => {
+        if (error.status === 404 ) {
+          this.errorForm = true;
+          this.errorMessage = 'Usuário não cadastrado.';
+        }
+        else {
+          this.errorForm = true;
+          this.errorMessage = 'Ocorreu um erro. Tente novamente mais tarde.';
+        }
+      }
+    });
     } else {
+      this.errorForm = true;
       console.log('Form is invalid.');
     }
   }

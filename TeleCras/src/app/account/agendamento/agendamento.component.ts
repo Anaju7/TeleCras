@@ -1,6 +1,7 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { Agendamento } from 'src/app/models/agendamento.model';
+import { ItemAgendamento } from 'src/app/models/listaAgendamentos.model';
 
 @Component({
   selector: 'app-agendamento',
@@ -8,14 +9,62 @@ import { Agendamento } from 'src/app/models/agendamento.model';
   styleUrls: ['./agendamento.component.css']
 })
 export class AgendamentoComponent {
-  agendamentos: Agendamento[] = [];
-  nomeUsuario: string = 'Ana Ju'; 
+  agendamentos: ItemAgendamento[] = [];
+  nomeUsuario: string = '';
+  horariosDisponiveis: string[] = [];
+  erroData: boolean = false;
+  cpf: string = "";
+  errorAgendamento: string = "";
+  errorCpf: boolean = false;
 
-  constructor(private http: HttpClient) {}
+  constructor(private readonly http: HttpClient) {}
 
   ngOnInit(): void {
-    this.carregarAgendamentos();
+    const usuarioString = localStorage.getItem('usuario');
+    if (usuarioString) {
+      const usuario = JSON.parse(usuarioString); // Converte o JSON de volta para objeto
+      this.cpf = usuario["user"]["cpf"];
+      this.nomeUsuario = usuario["user"]["nome"].split(' ')[0];
+      this.carregarAgendamentos();
+    }
+    this.gerarHorarios();
   }
+
+  validarData(event: Event): void {
+    const input = (event.target as HTMLInputElement).value;
+    let data = new Date(input);
+    const hoje = new Date();
+    data.setDate(data.getDate() + 1);
+  
+    // Verifica se NÃO é dia útil ou se é menor que hoje
+    if ((data.getDay() === 0 || data.getDay() === 6) || data < hoje) {
+      this.erroData = true;
+    } else {
+      this.erroData = false;
+    }
+  }
+
+  gerarHorarios(): void {
+    const startTime = 8 * 60; // 8:00 em minutos
+    const endTime = 17 * 60; // 17:00 em minutos
+    const intervalo = 30; // Intervalo de 30 minutos
+    const intervaloInicio = 12 * 60; // 12:00 em minutos
+    const intervaloFim = 14 * 60; // 14:00 em minutos
+  
+    for (let time = startTime; time <= endTime; time += intervalo) {
+      // Pula horários entre 12:00 e 14:00
+      if (time >= intervaloInicio && time < intervaloFim) {
+        continue;
+      }
+  
+      const hours = Math.floor(time / 60);
+      const minutes = time % 60;
+      const formattedTime = `${hours.toString().padStart(2, '0')}:${minutes
+        .toString()
+        .padStart(2, '0')}`;
+      this.horariosDisponiveis.push(formattedTime);
+    }
+  }  
 
   validateName(event: Event): void {
     const input = event.target as HTMLInputElement;
@@ -54,32 +103,55 @@ export class AgendamentoComponent {
     input.value = value;
   }
 
+  cpfvalidator(event: Event) {
+    const input = event.target as HTMLInputElement;
+    let value = input.value.replace(/\D/g, '');
+    console.log(value, this.cpf);
+    if (value !== this.cpf) {
+      this.errorAgendamento = "CPF diferente do cadastrado"
+      this.errorCpf = true;
+    } else {
+      console.log("cpfs iguais")
+      this.errorCpf = false;
+    }
+
+  }
+
   carregarAgendamentos(): void {
-    this.http.get<any[]>('URL_DA_API').subscribe({
-      next: (response) => {
-        this.agendamentos = response;
+    this.http.get<ItemAgendamento[]>('/api/agendamentos?cpf=' + this.cpf ).subscribe({
+      next: (response: ItemAgendamento[]) => {
+        this.agendamentos = [];
+        response.forEach(item => this.agendamentos.push(item));
+        console.log(this.agendamentos);
       },
-      error: (error) => {
-        console.error('Erro ao carregar agendamentos:', error);
+      error: (error: HttpErrorResponse) => {
+
       }
     });
   }
 
   addAgendamento(form: any): void {
-    if (form.valid) {
+    if (form.valid && !this.erroData && !this.errorCpf) {
       const novoAgendamento: Agendamento  = {
-        id: this.agendamentos.length + 1,
         nome: form.value.nome,
-        cpf: form.value.cpf,
-        data: form.value.dataHora.split('T')[0],
-        hora: form.value.dataHora.split('T')[1],
+        cpf: form.value.cpf.replace(/\D/g, ''),
+        data: form.value.data,
+        hora:  form.value.hora + ":00",
         servico: form.value.servico,
-        numero: form.value.numero,
-        unidade: form.value.unidade,
+        contato: form.value.numero.replace(/\D/g, ''),
         local: form.value.unidade
       };
-      this.agendamentos.push(novoAgendamento); // Atualiza a lista local
-      form.resetForm(); // Reseta o formulário após o envio
+      console.log(novoAgendamento)
+      this.http.post('/api/agendamentos', novoAgendamento ).subscribe({
+        next: (response) => {
+          console.log(response);
+          this.carregarAgendamentos();
+        },
+        error: () => {
+          this.errorAgendamento = "Erro ao criar agendamento"
+        }
+      });
+      form.resetForm();
     }
 
   }

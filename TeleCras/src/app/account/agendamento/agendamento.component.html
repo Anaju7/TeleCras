@@ -2,32 +2,33 @@
   <h2>Olá {{ nomeUsuario }}, Consulte seus agendamentos</h2>
   
   <!-- Exibe mensagem se não houver agendamentos -->
-  <div *ngIf="agendamentos.length === 0" class="alert alert-warning mt-3">
-    Você ainda não possui agendamentos.
+  <div *ngIf="agendamentos.length === 0" class="alert-404 text-center mt-5">
+    <img src="../../../assets/nenhum-resultado.png" alt="Nenhum agendamento encontrado." srcset="">
+    <p>Nenhum agendamento encontrado.</p>
   </div>
 
   <!-- Acordeons para agendamentos -->
-  <div *ngFor="let agendamento of agendamentos" class="accordion mt-3" id="accordionExample">
+  <div *ngFor="let agendamento of agendamentos" class="accordion mt-4" id="accordionExample">
     <div class="accordion-item" style="border: 1px solid #001540;">
-      <h2 class="accordion-header" id="heading{{ agendamento.id }}">
+      <h2 class="accordion-header" [id]="'heading' + agendamento.id">
         <button 
-          class="accordion-button collapsed" 
-          type="button" 
-          data-bs-toggle="collapse" 
-          data-bs-target="#collapse" 
-          aria-expanded="false" 
-          aria-controls="collapse">
+        class="accordion-button collapsed" 
+        type="button" 
+        data-bs-toggle="collapse" 
+        [attr.data-bs-target]="'#collapse' + agendamento.id"
+        aria-expanded="false" 
+        [attr.aria-controls]="'collapse' + agendamento.id">
           {{ agendamento.servico }}
         </button>
       </h2>
       <div 
-        id="collapse" 
+        [id]="'collapse' + agendamento.id"  
         class="accordion-collapse collapse" 
-        aria-labelledby="heading" 
+        [attr.aria-labelledby]="'heading' + agendamento.id" 
         data-bs-parent="#accordionExample">
         <div class="accordion-body">
           <p><strong>Nome:</strong> {{ agendamento.nome }}</p>
-          <p><strong>Contato:</strong> {{ agendamento.numero }}</p>
+          <p><strong>Contato:</strong> {{ agendamento.contato }}</p>
           <p><strong>CPF:</strong> {{ agendamento.cpf }}</p>
           <p><strong>Data:</strong> {{ agendamento.data | date:'dd/MM/yyyy' }}</p>
           <p><strong>Hora:</strong> {{ agendamento.hora }}</p>
@@ -55,7 +56,7 @@
   <div class="modal-body">
     <form (ngSubmit)="addAgendamento(agendamentoForm)" #agendamentoForm="ngForm">
       <div class="row g-3">
-        <div class="col-md-6">
+        <div class="col-md-12">
           <label for="nome" class="form-label">Nome Completo</label>
           <input 
             type="text" 
@@ -75,19 +76,39 @@
             name="cpf" 
             ngModel
             (keyup)="formatCpf($event)" 
+            (change)="cpfvalidator($event)"
             required
             placeholder="000.000.000-00"
             maxlength="14">
+            <p *ngIf="errorCpf" id="error" class="error-message hidden">{{errorAgendamento}}</p>
         </div>
         <div class="col-md-6">
-          <label for="dataHora" class="form-label">Data/Hora</label>
+          <label for="data" class="form-label">Data</label>
           <input 
-            type="datetime-local" 
+            type="date" 
             class="form-control" 
-            id="dataHora" 
-            name="dataHora" 
+            id="data" 
+            name="data" 
+            ngModel
+            (change)="validarData($event)"
+            required>
+            <div *ngIf="erroData" class="error-message mt-1">
+              Por favor, selecione um dia útil.
+            </div>
+        </div>
+        <div class="col-md-6">
+          <label for="hora" class="form-label">Hora</label>
+          <select 
+            class="form-select" 
+            id="hora" 
+            name="hora" 
             ngModel 
             required>
+            <option value="" disabled selected>Selecione um horário</option>
+            <option *ngFor="let horario of horariosDisponiveis" [value]="horario">
+              {{ horario }}
+            </option>
+          </select>
         </div>
         <div class="col-md-6">
           <label for="servico" class="form-label">Serviço</label>
@@ -150,7 +171,7 @@
         </div>
       </div>
       <div class="mt-4 text-end">
-        <button type="submit" class="btn btn-secondary"  data-bs-dismiss="modal" [disabled]="!agendamentoForm.valid">Salvar</button>
+        <button type="submit" class="btn btn-secondary"  data-bs-dismiss="modal" [disabled]="!agendamentoForm.valid || erroData || errorCpf">Salvar</button>
       </div>
     </form>
   </div>

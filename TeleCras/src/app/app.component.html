@@ -40,7 +40,7 @@
     
             <!-- Botão "Sair" visível fora da página inicial -->
             <li class="nav-item" *ngIf="isNotHomePage()">
-              <a class="btn btn-outline-secondary nav-link px-3" routerLink="/">Sair</a>
+              <a class="btn btn-outline-secondary nav-link px-3" routerLink="/" (click)="clear()">Sair</a>
             </li>
           </ul>
         </div>

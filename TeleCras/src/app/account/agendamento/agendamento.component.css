@@ -21,6 +21,10 @@
     background-color: #001540;
     color: #ffffff;
   }
+
+  .accordion-body p {
+    margin-bottom: 0;
+  }
   
 
 .modal-content {
@@ -108,3 +112,30 @@ select:focus {
 .link-small a {
     color: #001540;
 }
+
+ .btn-secondary {
+    background-color: #001540;
+    color: #fff;
+    border: none;
+    padding: 8px 20px;
+    border-radius: 8px;
+    font-size: 1rem;
+  }
+  
+.btn-secondary:hover {
+    background-color: #003366;
+  }
+
+.error-message {
+    color: #d8000c;
+    font-size: 9px;
+    margin-left: 10px;
+    text-align: start;
+    font-weight: bold;
+}
+
+.alert-404 {
+    color: #001540;
+    font-weight: bold;
+}
+  
