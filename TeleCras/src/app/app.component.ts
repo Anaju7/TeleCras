@@ -15,6 +15,7 @@ export class AppComponent  {
   ngOnInit(): void {
     this.router.events.subscribe(() => {
       this.currentPath = this.router.url;  // Atualiza o currentPath sempre que a URL mudar
+      this.closeNavbar();
     });
   }
 
@@ -46,4 +47,11 @@ export class AppComponent  {
     return path === '/' && (!fragment || ['services','sobre', 'FAQ', 'footer'].includes(fragment));
   }
 
+  closeNavbar(): void {
+    const navbar = document.getElementById('navbarNav'); // Pega o ID do menu
+    if (navbar && navbar.classList.contains('show')) {
+      // Remove a classe 'show' para fechar o menu
+      navbar.classList.remove('show');
+    }
+  }
 }

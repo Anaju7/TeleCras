@@ -138,4 +138,14 @@ select:focus {
     color: #001540;
     font-weight: bold;
 }
+
+.loading {
+    position: absolute;
+    top: 40%;
+    right: 50%;
+}
+
+.text-primary {
+    color: #001540 !important;
+}
   

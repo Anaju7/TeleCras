@@ -16,6 +16,7 @@ export class AgendamentoComponent {
   cpf: string = "";
   errorAgendamento: string = "";
   errorCpf: boolean = false;
+  loading: boolean = true;
 
   constructor(private readonly http: HttpClient) {}
 
@@ -123,9 +124,10 @@ export class AgendamentoComponent {
         this.agendamentos = [];
         response.forEach(item => this.agendamentos.push(item));
         console.log(this.agendamentos);
+        this.loading = false;
       },
       error: (error: HttpErrorResponse) => {
-
+        this.loading = false;
       }
     });
   }
