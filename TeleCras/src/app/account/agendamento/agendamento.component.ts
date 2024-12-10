@@ -118,11 +118,26 @@ export class AgendamentoComponent {
 
   }
 
+  formatarCPF(cpf: string): string {
+    return cpf.length === 11 ? `${cpf.slice(0, 3)}.${cpf.slice(3, 6)}.${cpf.slice(6, 9)}-${cpf.slice(9)}` : cpf;
+  }
+  
+  // Função para formatar número de telefone
+  formatarNumero(numero: string): string {
+    return numero.length === 11 ? `(${numero.slice(0, 2)}) ${numero.slice(2, 7)}-${numero.slice(7)}` : numero;
+  }
+
   carregarAgendamentos(): void {
     this.http.get<ItemAgendamento[]>('/api/agendamentos?cpf=' + this.cpf ).subscribe({
       next: (response: ItemAgendamento[]) => {
         this.agendamentos = [];
-        response.forEach(item => this.agendamentos.push(item));
+        response.forEach(item => {
+
+          item.cpf = this.formatarCPF(item.cpf);
+          item.contato = this.formatarNumero(item.contato);
+
+          this.agendamentos.push(item)
+        });
         console.log(this.agendamentos);
         this.loading = false;
       },
@@ -143,6 +158,7 @@ export class AgendamentoComponent {
         contato: form.value.numero.replace(/\D/g, ''),
         local: form.value.unidade
       };
+      this.loading = true;
       console.log(novoAgendamento)
       this.http.post('/api/agendamentos', novoAgendamento ).subscribe({
         next: (response) => {
